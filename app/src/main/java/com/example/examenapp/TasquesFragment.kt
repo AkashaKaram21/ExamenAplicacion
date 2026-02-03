@@ -58,6 +58,14 @@ class TasquesFragment : Fragment() {
         // Carregar totes les tasques inicialment
         actualitzarTasques()
 
+    }
+
+    private fun setupRecyclerView() {
+
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+
+
         val items = Tasca.items
 
 
@@ -68,12 +76,6 @@ class TasquesFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
-
-
-    }
-
-    private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun setupChips() {

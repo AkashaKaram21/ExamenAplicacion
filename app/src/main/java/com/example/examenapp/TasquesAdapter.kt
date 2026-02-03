@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
 class TasquesAdapter : RecyclerView.Adapter<TascaViewHolder>() {
 
     private var tasques = listOf<Tasca>()
@@ -14,6 +13,8 @@ class TasquesAdapter : RecyclerView.Adapter<TascaViewHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun getItemCount(): Int = items.size
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TascaViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_tasca, parent, false)
@@ -21,13 +22,7 @@ class TasquesAdapter : RecyclerView.Adapter<TascaViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TascaViewHolder, position: Int) {
-        holder.renderitza(tasques[position])
-    }
-
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        holder.bind(tasques[position])
     }
 
 }
-
-private fun TascaViewHolder.renderitza(tasca: Tasca) {}

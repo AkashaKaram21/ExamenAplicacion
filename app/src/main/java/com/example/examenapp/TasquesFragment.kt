@@ -1,5 +1,6 @@
 package com.example.examenapp
 
+import EditarTascaFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,7 +26,27 @@ class TasquesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_tasques, container, false)
+        val tasca =  inflater.inflate(R.layout.fragment_tasques, container, false)
+
+        private val onTascaClick: (Tasca) -> Unit
+
+
+        TascaViewHolder.itemView.setOnClickListener { onTascaClick(tasca) }
+
+
+        val bundle = Bundle().apply {
+            putInt("tasca_id", tasca.id)
+        }
+
+        val fragment = EditarTascaFragment()
+        fragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+
+        return tasca
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -28,11 +28,6 @@ class TasquesFragment : Fragment() {
     ): View? {
         val tasca =  inflater.inflate(R.layout.fragment_tasques, container, false)
 
-        private val onTascaClick: (Tasca) -> Unit
-
-
-        TascaViewHolder.itemView.setOnClickListener { onTascaClick(tasca) }
-
 
         val bundle = Bundle().apply {
             putInt("tasca_id", tasca.id)
@@ -62,6 +57,19 @@ class TasquesFragment : Fragment() {
 
         // Carregar totes les tasques inicialment
         actualitzarTasques()
+
+        val items = Tasca.items
+
+
+        adapter = TasquesAdapter(items) { item ->
+            Toast.makeText(requireContext(), "Clic en ${item.title}", Toast.LENGTH_SHORT).show()
+        }
+
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
+
     }
 
     private fun setupRecyclerView() {

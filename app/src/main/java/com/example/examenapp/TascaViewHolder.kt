@@ -17,10 +17,7 @@ class TascaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      */
     fun bind(item: Tasca ) {
         tvNom.text = item.nom
-        tvCategoria.text = item.categoria
         tvData.text = item.data
-        tvEstat.text = item.estat
-
 
         // Exemple de gestió de clic sobre tota la fila
         itemView.setOnClickListener {
